@@ -1,0 +1,271 @@
+<div class="card" style="margin-top: 50px; margin-bottom: 30px;" >
+    <div class="card-body">
+        <div class="bs-example">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#home" style="font-size: 17px;">FCFS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu1" style="font-size: 17px;">Round Robin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu2" style="font-size: 17px;">Priority Scheduling (Preemptive)</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu3" style="font-size: 17px;">Priority Scheduling (Non Preemptive)</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu4" style="font-size: 17px;">SJF</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu5" style="font-size: 17px;">SRTF</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu6" style="font-size: 17px;">Comparison</a>
+                </li>
+            </ul>         
+        </div>
+        <div class="tab-content" style="margin-bottom: 20px;">
+            <div id="home" class="container tab-pane active cona"><br>
+                <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <div class="card-body" >
+                        <table class="table table-striped">
+                            <tr class="thead-dark">
+                                <th scope="col" style="padding: 10px; text-align: center;">Process ID</th>
+                                <th scope="col" style="padding: 10px; text-align: center;">Arrival Time</th>
+                                <th scope="col" style="padding: 10px; text-align: center;">Burst Time</th>
+                                <th scope="col" style="padding: 10px; text-align: center;">Waiting Time</th>
+                                <th scope="col" style="padding: 10px; text-align: center;">Turn Arround Time</th>
+                                <th scope="col" style="padding: 10px; text-align: center;">Completion Time</th>
+                            </tr>
+                            <% for (var i=0; i < n;  i++ ) { %>
+                                <tr>
+                                    <td style="padding: 10px; text-align: center;"><%= repid[i] %></td>
+                                    <td style="padding: 10px; text-align: center;"><%= reat[i] %> sec</td>
+                                    <td style="padding: 10px; text-align: center;"><%= rebt[i] %> sec</td>
+                                    <td style="padding: 10px; text-align: center;"><%= wt1[i] %> sec</td>
+                                    <td style="padding: 10px; text-align: center;"><%= tat1[i] %> sec</td>
+                                    <td style="padding: 10px; text-align: center;"><%= compl_time1[i] %> sec</td>
+                                </tr>
+                            <% } %>
+                        </table>
+                        <div style="margin-top: 20px;">
+                            <p style="display: inline; margin-right: 30px;">Total Waiting Time : <%= total_wt1 %> sec</p>
+                            <p style="display: inline; margin-right: 30px;">Total Turn Arround Time : <%= total_tat1 %> sec</p>
+                            <p style="display: inline; margin-right: 30px;">Average Waiting Time : <span id="wt0"><%= avg_wt1 %></span> sec</p>
+                            <p style="display: inline; margin-right: 30px;">Average Turn Arround Time : <span id="tat0"><%= avg_tat1 %></span> sec</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div id="menu1" class="container tab-pane cona"><br>
+                <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <tr class="thead-dark">
+                                <th style="padding: 10px; text-align: center;">Process ID</th>
+                                <th style="padding: 10px; text-align: center;">Arrival Time</th>
+                                <th style="padding: 10px; text-align: center;">Burst Time</th>
+                                <th style="padding: 10px; text-align: center;">Quntum</th>
+                                <th style="padding: 10px; text-align: center;">Waiting Time</th>
+                                <th style="padding: 10px; text-align: center;">Turn Arround Time</th>
+                                <th style="padding: 10px; text-align: center;">Completion Time</th>
+                            </tr>
+                            <% for (var i=0; i < n;  i++ ) { %>
+                                <tr>
+                                    <td style="padding: 10px; text-align: center;"><%= id[i] %></td>
+                                    <td style="padding: 10px; text-align: center;"><%= at[i] %> sec</td>
+                                    <td style="padding: 10px; text-align: center;"><%= bt[i] %> sec</td>
+                                    <td style="padding: 10px; text-align: center;"><%= quantum %> sec</td>
+                                    <td style="padding: 10px; text-align: center;"><%= proc_obj[i].waiting_time %> sec</td>
+                                    <td style="padding: 10px; text-align: center;"><%= proc_obj[i].turnaround_time %> sec</td>
+                                    <td style="padding: 10px; text-align: center;"><%= proc_obj[i].completion_time %> sec</td>
+                                </tr>
+                            <% } %>
+                        </table>
+                        <div style="margin-top: 20px;">
+                            <p style="display: inline; margin-right: 30px;">Total Waiting Time : <%= total_wt2 %> sec</p>
+                            <p style="display: inline; margin-right: 30px;">Total Turn Arround Time : <%= total_tat2 %> sec</p>
+                            <p style="display: inline; margin-right: 30px;">Average Waiting Time : <span id="wt1"><%= avg_wt2 %></span> sec</p>
+                            <p style="display: inline; margin-right: 30px;">Average Turn Arround Time : <span id="tat1"><%= avg_tat2 %></span> sec</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div id="menu2" class="container tab-pane cona"><br>
+                <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <tr class="thead-dark">
+                                <th style=" padding: 10px; text-align: center;">Process ID</th>
+                                <th style=" padding: 10px; text-align: center;">Arrival Time</th>
+                                <th style=" padding: 10px; text-align: center;">Burst Time</th>
+                                <th style=" padding: 10px; text-align: center;">Priority</th>
+                                <th style=" padding: 10px; text-align: center;">Waiting Time</th>
+                                <th style=" padding: 10px; text-align: center;">Turn Arround Time</th>
+                                <th style=" padding: 10px; text-align: center;">Completion Time</th>
+                            </tr>
+                            <% for (var i=0; i < n;  i++ ) { %>
+                                <tr>
+                                    <td style=" padding: 10px; text-align: center;"><%= id[i] %></td>
+                                    <td style=" padding: 10px; text-align: center;"><%= at[i] %> sec</td>
+                                    <td style=" padding: 10px; text-align: center;"><%= bt[i] %> sec</td>
+                                    <td style=" padding: 10px; text-align: center;"><%= prio[i] %></td>
+                                    <td style=" padding: 10px; text-align: center;"><%= wt3[i] %> sec</td>
+                                    <td style=" padding: 10px; text-align: center;"><%= tat3[i] %> sec</td>
+                                    <td style=" padding: 10px; text-align: center;"><%= compl_time3[i] %> sec</td>
+                                </tr>
+                            <% } %>
+                        </table>
+                        <div style="margin-top: 20px;">
+                            <p style="display: inline; margin-right: 30px;">Total Waiting Time : <%= total_wt3 %> sec</p>
+                            <p style="display: inline; margin-right: 30px;">Total Turn Arround Time : <%= total_tat3 %> sec</p>
+                            <p style="display: inline; margin-right: 30px;">Average Waiting Time : <span id="wt2"><%= avg_wt3 %></span> sec</p>
+                            <p style="display: inline; margin-right: 30px;">Average Turn Arround Time : <span id="tat2"><%= avg_tat3 %></span> sec</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div id="menu3" class="container tab-pane cona"><br>
+                <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <tr class="thead-dark">
+                                <th style=" padding: 10px; text-align: center;">Process ID</th>
+                                <th style=" padding: 10px; text-align: center;">Arrival Time</th>
+                                <th style=" padding: 10px; text-align: center;">Burst Time</th>
+                                <th style=" padding: 10px; text-align: center;">Priority</th>
+                                <th style=" padding: 10px; text-align: center;">Waiting Time</th>
+                                <th style=" padding: 10px; text-align: center;">Turn Arround Time</th>
+                                <th style=" padding: 10px; text-align: center;">Completion Time</th>
+                            </tr>
+                            <% for (var i=0; i < n;  i++ ) { %>
+                                <tr>
+                                    <td style=" padding: 10px; text-align: center;"><%= id[i] %></td>
+                                    <td style=" padding: 10px; text-align: center;"><%= at[i] %> sec</td>
+                                    <td style=" padding: 10px; text-align: center;"><%= bt[i] %> sec</td>
+                                    <td style=" padding: 10px; text-align: center;"><%= prio[i] %></td>
+                                    <td style=" padding: 10px; text-align: center;"><%= wt4[i] %> sec</td>
+                                    <td style=" padding: 10px; text-align: center;"><%= tat4[i] %> sec</td>
+                                    <td style=" padding: 10px; text-align: center;"><%= compl_time4[i] %> sec</td>
+                                </tr>
+                            <% } %>
+                        </table>
+                        <div style="margin-top: 20px;">
+                            <p style="display: inline; margin-right: 30px;">Total Waiting Time : <%= total_wt4 %> sec</p>
+                            <p style="display: inline; margin-right: 30px;">Total Turn Arround Time : <%= total_tat4 %> sec</p>
+                            <p style="display: inline; margin-right: 30px;">Average Waiting Time : <span id="wt3"><%= avg_wt4 %></span> sec</p>
+                            <p style="display: inline; margin-right: 30px;">Average Turn Arround Time : <span id="tat3"><%= avg_tat4 %></span> sec</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div id="menu4" class="container tab-pane cona"><br>
+                <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <tr class="thead-dark">
+                                <th style=" padding: 10px; text-align: center;">Process ID</th>
+                                <th style=" padding: 10px; text-align: center;">Arrival Time</th>
+                                <th style=" padding: 10px; text-align: center;">Burst Time</th>
+                                <th style=" padding: 10px; text-align: center;">Waiting Time</th>
+                                <th style=" padding: 10px; text-align: center;">Turn Arround Time</th>
+                                <th style=" padding: 10px; text-align: center;">Completion Time</th>
+                            </tr>
+                            <% for (var i=0; i < n;  i++ ) { %>
+                                <tr>
+                                    <td style=" padding: 10px; text-align: center;"><%= id[i] %></td>
+                                    <td style=" padding: 10px; text-align: center;"><%= at[i] %> sec</td>
+                                    <td style=" padding: 10px; text-align: center;"><%= bt[i] %> sec</td>
+                                    <td style=" padding: 10px; text-align: center;"><%= wt5[i] %> sec</td>
+                                    <td style=" padding: 10px; text-align: center;"><%= tat5[i] %> sec</td>
+                                    <td style=" padding: 10px; text-align: center;"><%= compl_time5[i] %> sec</td>
+                                </tr>
+                            <% } %>
+                        </table>
+                        <div style="margin-top: 20px;">
+                            <p style="display: inline; margin-right: 30px;">Total Waiting Time : <%= total_wt5 %> sec</p>
+                            <p style="display: inline; margin-right: 30px;">Total Turn Arround Time : <%= total_tat5 %> sec</p>
+                            <p style="display: inline; margin-right: 30px;">Average Waiting Time : <span id="wt4"><%= avg_wt5 %></span> sec</p>
+                            <p style="display: inline; margin-right: 30px;">Average Turn Arround Time : <span id="tat4"><%= avg_tat5 %></span> sec</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div id="menu5" class="container tab-pane cona"><br>
+                <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <tr class="thead-dark">
+                                <th style=" padding: 10px; text-align: center;">Process ID</th>
+                                <th style=" padding: 10px; text-align: center;">Arrival Time</th>
+                                <th style=" padding: 10px; text-align: center;">Burst Time</th>
+                                <th style=" padding: 10px; text-align: center;">Waiting Time</th>
+                                <th style=" padding: 10px; text-align: center;">Turn Arround Time</th>
+                                <th style=" padding: 10px; text-align: center;">Completion Time</th>
+                            </tr>
+                            <% for (var i=0; i < n;  i++ ) { %>
+                                <tr>
+                                    <td style=" padding: 10px; text-align: center;"><%= id[i] %></td>
+                                    <td style=" padding: 10px; text-align: center;"><%= at[i] %> sec</td>
+                                    <td style=" padding: 10px; text-align: center;"><%= bt[i] %> sec</td>
+                                    <td style=" padding: 10px; text-align: center;"><%= wt6[i] %> sec</td>
+                                    <td style=" padding: 10px; text-align: center;"><%= tat6[i] %> sec</td>
+                                    <td style=" padding: 10px; text-align: center;"><%= compl_time6[i] %> sec</td>
+                                </tr>
+                            <% } %>
+                        </table>
+                        <div style="margin-top: 20px;">
+                            <p style="display: inline; margin-right: 30px;">Total Waiting Time : <%= total_wt6 %> sec</p>
+                            <p style="display: inline; margin-right: 30px;">Total Turn Arround Time : <%= total_tat6 %> sec</p>
+                            <p style="display: inline; margin-right: 30px;">Average Waiting Time : <span id="wt5"><%= avg_wt6 %></span> sec</p>
+                            <p style="display: inline; margin-right: 30px;">Average Turn Arround Time : <span id="tat5"><%= avg_tat6 %></span> sec</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div id="menu6" class="container tab-pane cona"><br>
+                <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <div class="card-body">
+                        <canvas id="mycanvas" width="400" height="200"></canvas>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <% var min_wt=Math.min(avg_wt1,avg_wt2,avg_wt3,avg_wt4,avg_wt5,avg_wt6);%>
+                        <% var min_tat = Math.min(avg_tat1,avg_tat2,avg_tat3,avg_tat4,avg_tat5,avg_tat6);%>
+                        <% var sche_name = [] %>
+                        <% if (avg_wt1 === min_wt) { %>
+                            <% sche_name.push("FCFS") %>
+                        <% }; %>
+                        <% if (avg_wt2 === min_wt) { %>
+                            <% sche_name.push("Round Robin") %>
+                        <% }; %>
+                        <% if (avg_wt3 === min_wt) { %>
+                            <% sche_name.push("Priority Scheduling (Preemptive)") %>
+                        <% }; %>
+                        <% if (avg_wt4 === min_wt) { %>
+                            <% sche_name.push("Priority Scheduling (Non Preemptive)") %>
+                        <% }; %>
+                        <% if (avg_wt5 === min_wt) { %>
+                            <% sche_name.push("SJF") %>
+                        <% }; %>
+                        <% if (avg_wt6 === min_wt) { %>
+                            <% sche_name.push("SRTF") %>
+                        <% }; %>
+                          
+                        <div style="padding: 2px; text-align: center;">
+                            <h6>The Best algorithm is <%= sche_name %> with average waiting time of <%= min_wt %> and average turnaround time of <%= min_tat %></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="javascripts/graph.js"></script>
+
